@@ -18,7 +18,7 @@ def create
   @article = Article.new(article_params)
   if @article.save
     flash[:notice]="Article was successfully created"
-  redirect_to article_path(@artical)
+  redirect_to articles_path
   else
     render 'new'
 end
@@ -38,6 +38,16 @@ end
 def show
 @article = Article.find(params[:id])
 end
+
+def destroy
+  @article = Article.find(params[:id])
+  @article.destroy
+  flash[:notice] = "Article Successfully deleted..."
+  redirect_to articles_path
+end
+
+
+
 
 private
 def article_params
